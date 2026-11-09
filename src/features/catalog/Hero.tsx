@@ -6,7 +6,7 @@ export function Hero() {
       className="hero flex items-center justify-between px-4 py-2 sm:p-8 xl:h-[450px] xl:py-0 xl:pr-0 xl:pl-10"
       aria-labelledby="hero-title"
     >
-      <div className="relative z-10 w-[190px] sm:w-[55%] xl:w-[600px]">
+      <div className="min-w-0 sm:w-[55%] xl:w-[600px]">
         <p className="text-xs leading-4 sm:text-sm">Bem-vindo à Kurio</p>
         <h1 id="hero-title" className="hero-title mt-2">
           <span className="hidden sm:inline">
@@ -39,21 +39,23 @@ export function Hero() {
           </a>
         </Button>
       </div>
-      <img
-        src="/assets/emerald.png"
-        width={1254}
-        height={1254}
-        className="hero-art"
-        alt="Emerald Ape, macaco com óculos e jaqueta verde"
-        fetchPriority="high"
-      />
-      <img
-        src="/assets/sage.png"
-        width={1254}
-        height={1254}
-        className="absolute top-[98px] right-[82px] z-10 size-[58px] rounded-2xl object-cover sm:hidden"
-        alt=""
-      />
+      <div className="relative flex-none sm:w-2/5 xl:w-[450px]">
+        <img
+          src="/assets/emerald.png"
+          width={1254}
+          height={1254}
+          className="hero-art"
+          alt="Emerald Ape, macaco com óculos e jaqueta verde"
+          fetchPriority="high"
+        />
+        <img
+          src="/assets/sage.png"
+          width={1254}
+          height={1254}
+          className="absolute -bottom-2 left-0 aspect-square w-[42%] rounded-2xl object-cover sm:hidden"
+          alt=""
+        />
+      </div>
       <img
         src="/assets/hero-dots.svg"
         alt=""

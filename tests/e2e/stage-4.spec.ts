@@ -579,6 +579,11 @@ test('timeout após criação retoma a mesma tentativa sem pedido duplicado', as
   ).toBeDisabled()
   await page.getByRole('button', { name: 'Retomar tentativa' }).click()
   await expect(page).toHaveURL(/\/pedidos\/[a-f0-9-]+/)
+  await expect(
+    page.getByRole('heading', {
+      name: 'Seus NFTs agora estão na sua carteira',
+    }),
+  ).toBeVisible()
   const orders = await browserApi(page, '/orders')
   expect(orders.status).toBe(200)
   expect(z.array(orderSchema).parse(orders.body)).toHaveLength(1)

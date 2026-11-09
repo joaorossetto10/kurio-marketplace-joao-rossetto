@@ -135,9 +135,8 @@
     font-weight: 700;
   }
   .hero-art {
-    width: 450px;
+    width: 100%;
     height: 450px;
-    flex: none;
     object-fit: cover;
     border-radius: 24px;
   }
@@ -248,7 +247,6 @@
     line-height: 1.5;
   }
   .hero-art {
-    width: 40%;
     height: auto;
     aspect-ratio: 1;
   }
@@ -258,7 +256,11 @@
     padding-bottom: calc(88px + env(safe-area-inset-bottom));
   }
   .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(76px, 100% - 182px, 138px);
+    column-gap: 8px;
     min-height: 190px;
+    padding-bottom: 18px;
     border-radius: 24px;
     background: var(--card);
   }
@@ -281,15 +283,10 @@
     height: 7px;
   }
   .hero-title {
-    font-size: 18px;
+    font-size: clamp(15px, 4.35vw, 18px);
     line-height: 29px;
   }
   .hero-art {
-    position: absolute;
-    width: 138px;
-    height: 138px;
-    right: 16px;
-    top: 10px;
     border-radius: 16px;
   }
   .nft-grid {

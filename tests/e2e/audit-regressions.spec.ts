@@ -144,3 +144,35 @@ test('checkout orienta a cadastrar carteira após remover todas', async ({
     page.getByRole('button', { name: 'Adicionar carteira' }),
   ).toBeVisible()
 })
+
+test('banner e preço do detalhe continuam legíveis em 320 px', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 844 })
+  await page.goto('/')
+  const title = page.getByRole('heading', { name: /SEJA DONO/ })
+  const artwork = page.getByRole('img', {
+    name: 'Emerald Ape, macaco com óculos e jaqueta verde',
+  })
+  await expect(title).toBeVisible()
+  await expect(artwork).toBeVisible()
+  await expect
+    .poll(async () => {
+      const textBox = await title.boundingBox()
+      const artBox = await artwork.boundingBox()
+      return Boolean(textBox && artBox && textBox.x + textBox.width < artBox.x)
+    })
+    .toBe(true)
+
+  await page.goto('/nfts/emerald-042')
+  const price = page
+    .locator('.detail-buy-bar')
+    .getByText('1.19 ETH', { exact: true })
+  await expect(price).toBeVisible()
+  const lines = await price.evaluate((node) => {
+    const range = document.createRange()
+    range.selectNodeContents(node)
+    return new Set([...range.getClientRects()].map((rect) => rect.top)).size
+  })
+  expect(lines).toBe(1)
+})

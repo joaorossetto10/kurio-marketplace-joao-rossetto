@@ -301,11 +301,17 @@ test('adição atravessa POST MSW, atualiza o indicador e persiste após refresh
   await expect(
     page.getByRole('region', { name: 'Resumo do carrinho' }),
   ).toContainText('2.38 ETH')
-  const responseGet = page.waitForResponse(
-    (r) => new URL(r.url()).pathname === '/api/cart',
-  )
+  const requestGet = page
+    .waitForEvent('framenavigated', (frame) => frame === page.mainFrame())
+    .then(() =>
+      page.waitForRequest(
+        (r) =>
+          r.method() === 'GET' && new URL(r.url()).pathname === '/api/cart',
+      ),
+    )
   await page.reload()
-  const get = await responseGet
+  const get = await (await requestGet).response()
+  if (!get) throw new Error('Carrinho não respondeu após o refresh')
   expect(get.fromServiceWorker()).toBe(true)
   expect(cartProofSchema.parse(await get.json()).visitorId).toBe(cart.visitorId)
   await expect(

@@ -209,7 +209,7 @@ function DetailView({ nft }: { nft: NftDetail }) {
             </dl>
             <div className="detail-buy-bar">
               <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
+                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
                   <label
                     htmlFor="nft-quantity"
                     className="text-sm text-muted-foreground"
@@ -242,7 +242,7 @@ function DetailView({ nft }: { nft: NftDetail }) {
                     }}
                     aria-invalid={!valid && remaining > 0}
                     aria-describedby="quantity-error edition-stock"
-                    className="quantity-input h-9 w-12 border-0 bg-transparent px-0 text-center"
+                    className="quantity-input h-9 w-8 border-0 bg-transparent px-0 text-center sm:w-12"
                   />
                   <Button
                     type="button"
@@ -265,7 +265,7 @@ function DetailView({ nft }: { nft: NftDetail }) {
                     <img src="/assets/plus.svg" alt="" />
                   </Button>
                 </div>
-                <p className="max-w-[45%] break-all text-right text-lg font-bold text-accent-foreground xl:hidden">
+                <p className="max-w-[45%] text-right text-lg font-bold wrap-anywhere text-accent-foreground xl:hidden">
                   {edition?.priceEth ?? nft.priceEth} ETH
                 </p>
               </div>
