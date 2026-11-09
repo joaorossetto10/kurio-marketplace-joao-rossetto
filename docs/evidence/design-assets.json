@@ -1,0 +1,328 @@
+[
+  {
+    "file": "public/assets/emerald.png",
+    "source": "assets/25e8cc22-08e9-4e10-a057-e578e621d6ae.png",
+    "sha256": "f20b58b99de12b6eceede2090607e4b999275bba95de7674bb14f26b59666b21",
+    "width": 1254,
+    "height": 1254,
+    "frame": 1,
+    "variable": "imgFrame136",
+    "nodes": ["70342:2673", "4:137", "4:428", "70343:268"]
+  },
+  {
+    "file": "public/assets/sage.png",
+    "source": "assets/7afc40bc-3e30-46da-9793-59329fe771d4.png",
+    "sha256": "9b25d8d72395aa62f919f6ad33b95b7ba7bbfee6049e95cf159a319b03ecb8d9",
+    "width": 1254,
+    "height": 1254,
+    "frame": 1,
+    "variable": "imgNftArtwork18",
+    "nodes": ["70410:3798", "4:162", "4:280", "4:282", "70343:277"]
+  },
+  {
+    "file": "public/assets/ivory.png",
+    "source": "assets/d6c32627-3026-4af9-9fee-1e80d00c8792.png",
+    "sha256": "326df4c1c08c31c88b9f407e51be3991e46667183af62aa1501927adc76f52b5",
+    "width": 1254,
+    "height": 1254,
+    "frame": 1,
+    "variable": "imgNftArtwork05",
+    "nodes": ["4:164", "4:284", "4:423", "70343:259"]
+  },
+  {
+    "file": "public/assets/golden.png",
+    "source": "assets/729bde3c-faf8-440d-9d3c-dd0d0bd4d1fa.png",
+    "sha256": "2a42ba5adc341c3d0e1ad6905058e2762d995fc988113a7cd28b0d15f6a4ba28",
+    "width": 1254,
+    "height": 1254,
+    "frame": 1,
+    "variable": "imgNftArtwork09",
+    "nodes": ["4:286", "4:289", "4:291", "70343:286"]
+  },
+  {
+    "file": "public/assets/hero-background.svg",
+    "source": "assets/3fce7b2e-9164-4494-b940-a3d184e0be3f.svg",
+    "sha256": "7794c68c7090f9e0ef137f544699c583a9f8b2de1b293f504631caec71863c4d",
+    "svgRoot": {
+      "width": "32",
+      "height": "32",
+      "viewBox": "0 0 32 32"
+    },
+    "frame": 1,
+    "variable": "imgRectangle3",
+    "nodes": ["2:104"]
+  },
+  {
+    "file": "public/assets/search.svg",
+    "source": "assets/bd3eb247-5337-4511-b5ca-33065154e82e.svg",
+    "sha256": "43663fd7c3c84d7bfa66ffdd358cb5ae9baf57d2be516ff25b06e1fb89d0e388",
+    "svgRoot": {
+      "width": "20.0009",
+      "height": "20",
+      "viewBox": "0 0 20.0009 20"
+    },
+    "frame": 1,
+    "variable": "imgSearchIcon",
+    "nodes": ["I70522:3240;70504:3015;70486:519"]
+  },
+  {
+    "file": "public/assets/cart.svg",
+    "source": "assets/a66b8c2a-65ba-43bf-bcb1-e1e391391d57.svg",
+    "sha256": "5e2917db4f8f9463a648666c7d78030791e7b24347d68476a342492088adf031",
+    "svgRoot": {
+      "width": "24.0042",
+      "height": "24",
+      "viewBox": "0 0 24.0042 24"
+    },
+    "frame": 1,
+    "variable": "imgCartIcon",
+    "nodes": ["I70522:3240;70504:3015;70486:521"]
+  },
+  {
+    "file": "public/assets/login.svg",
+    "source": "assets/66d21d99-f1d6-4fb3-b5ff-615ed9c6194f.svg",
+    "sha256": "400348ca0c418c6142cffed0fee38c7753ee589c268f03be4cd8ebf20543de3c",
+    "svgRoot": {
+      "width": "17.7779",
+      "height": "16.9167",
+      "viewBox": "0 0 17.7779 16.9167"
+    },
+    "frame": 1,
+    "variable": "imgLogout",
+    "nodes": ["I70522:3240;70504:3015;70486:527;29221:4777"]
+  },
+  {
+    "file": "public/assets/social-1.svg",
+    "source": "assets/f56487d5-9e96-4b61-aed3-b4649c40fb66.svg",
+    "sha256": "6a984b7eeb4d8b6f88561c31ca45cbdf22f77c536dc85e5cd7bb10a7b45d1688",
+    "svgRoot": {
+      "width": "32",
+      "height": "32",
+      "viewBox": "0 0 32 32"
+    },
+    "frame": 1,
+    "variable": "imgFrame108",
+    "nodes": ["I70492:696;70491:1269"]
+  },
+  {
+    "file": "public/assets/social-2.svg",
+    "source": "assets/cb052c95-d35e-4223-a6d7-b69cbe4c07eb.svg",
+    "sha256": "129783e293beb8f856fa0117b3806bd98c1a61455812671fe0faa1d34b92ea59",
+    "svgRoot": {
+      "width": "32",
+      "height": "32",
+      "viewBox": "0 0 32 32"
+    },
+    "frame": 1,
+    "variable": "imgFrame109",
+    "nodes": ["I70492:696;70491:1271"]
+  },
+  {
+    "file": "public/assets/social-3.svg",
+    "source": "assets/6abd7c3d-2fcf-46a8-ba1f-0c0e2f236311.svg",
+    "sha256": "90ac152d2c8ad501109137db7ee03baf7493122d1afc6ee0fb435ed1835e2d94",
+    "svgRoot": {
+      "width": "32",
+      "height": "32",
+      "viewBox": "0 0 32 32"
+    },
+    "frame": 1,
+    "variable": "imgFrame110",
+    "nodes": ["I70492:696;70491:1273"]
+  },
+  {
+    "file": "public/assets/social-4.svg",
+    "source": "assets/48f6aecf-3427-4a3c-b106-28a0b7a16f3c.svg",
+    "sha256": "be57d179a85ed75bb0d1d221979eb71d6516c99ab892343420c84dc5921bb71e",
+    "svgRoot": {
+      "width": "32",
+      "height": "32",
+      "viewBox": "0 0 32 32"
+    },
+    "frame": 1,
+    "variable": "imgFrame111",
+    "nodes": ["I70492:696;70491:1275"]
+  },
+  {
+    "file": "public/assets/social-5.svg",
+    "source": "assets/505ab164-a536-4176-a43d-43bd86a58cbf.svg",
+    "sha256": "211a63e3208bb23a6c336ae1b47721797f1ce8fb184a04f9d3e9b47066997d22",
+    "svgRoot": {
+      "width": "32",
+      "height": "32",
+      "viewBox": "0 0 32 32"
+    },
+    "frame": 1,
+    "variable": "imgFrame112",
+    "nodes": ["I70492:696;70491:1277"]
+  },
+  {
+    "file": "public/assets/filter.svg",
+    "source": "assets/2879206a-7d5a-4815-9ba5-7ff8738f7aa9.svg",
+    "sha256": "626a33e9cf87b0114eb7d76f30b3215e3ea50d6b6dafebce66f47c262ac268af",
+    "svgRoot": {
+      "width": "16.1463",
+      "height": "16.1066",
+      "viewBox": "0 0 16.1463 16.1066"
+    },
+    "frame": 10,
+    "variable": "imgFilter",
+    "nodes": ["I15:5488;29221:4570"]
+  },
+  {
+    "file": "public/assets/home.svg",
+    "source": "assets/1484dbd8-03f4-4ba7-8b5a-98cf861137d1.svg",
+    "sha256": "817217a0fb3c14a94ec579cacd868fb46c74815085c5bec20571fcbff5a3fd1d",
+    "svgRoot": {
+      "width": "15.8333",
+      "height": "16.6668",
+      "viewBox": "0 0 15.8333 16.6668"
+    },
+    "frame": 10,
+    "variable": "imgHome",
+    "nodes": ["I15:5519;15:5517"]
+  },
+  {
+    "file": "public/assets/user.svg",
+    "source": "assets/bba61f7f-ea13-4498-a3cd-4c91470b0237.svg",
+    "sha256": "685a52bee52914a28fa470d693af74235322f879e4ce77c823c6357b7de114a7",
+    "svgRoot": {
+      "width": "20",
+      "height": "20",
+      "viewBox": "0 0 20 20"
+    },
+    "frame": 10,
+    "variable": "imgUser",
+    "nodes": ["15:5522"]
+  },
+  {
+    "file": "public/assets/heart.svg",
+    "source": "assets/dac3dfcd-69a3-40c7-a670-f7d7d546ed43.svg",
+    "sha256": "0fa90a80e18e338a71170d39584b98127fe12e317d6cdd72c59f89fb65ed8be0",
+    "svgRoot": {
+      "width": "20",
+      "height": "20",
+      "viewBox": "0 0 20 20"
+    },
+    "frame": 2,
+    "variable": "imgHeart1",
+    "nodes": ["70410:3940"]
+  },
+  {
+    "file": "public/assets/close.svg",
+    "source": "assets/3d6d2f89-3b1a-413a-b5a7-95fc751a2dc8.svg",
+    "sha256": "a434085336d2581c34cc1e853dc35399644244590ec7d3751f884cbaf62d4dfa",
+    "svgRoot": {
+      "width": "18",
+      "height": "18",
+      "viewBox": "0 0 18 18"
+    },
+    "frame": 6,
+    "variable": "imgX",
+    "nodes": ["9:947"]
+  },
+  {
+    "file": "public/assets/hero-mobile-background.svg",
+    "source": "assets/ef89b937-ec8f-4d6d-a56f-26a496047e16.svg",
+    "sha256": "81e705a5e521900cc42861cd468f817ae73541f7286caf942716e543df6173f0",
+    "svgRoot": {
+      "width": "366",
+      "height": "190",
+      "viewBox": "0 0 366 190"
+    },
+    "frame": 10,
+    "variable": "imgMaskGroup",
+    "nodes": ["14:5290"]
+  },
+  {
+    "file": "public/assets/arrow-mobile.svg",
+    "source": "assets/de9ede29-ab41-4c0d-baf4-aee0f5eea69d.svg",
+    "sha256": "c52fe7279962435f332d481e23e18d2024017e241408e404cf73e51cc85bc3d7",
+    "svgRoot": {
+      "width": "9.53296",
+      "height": "11.5",
+      "viewBox": "0 0 9.53296 11.5"
+    },
+    "frame": 10,
+    "variable": "imgArrowRight",
+    "nodes": ["I15:5295;29221:4926"]
+  },
+  {
+    "file": "public/assets/hero-mobile-dots.svg",
+    "source": "assets/eab81e5d-b95f-4fdb-b7af-801520c86e48.svg",
+    "sha256": "9243a5140bc3a208bf7c002a6fda07d8d7f8e5ac2442a494a1a1b943935a736f",
+    "svgRoot": {
+      "width": "33",
+      "height": "7",
+      "viewBox": "0 0 33 7"
+    },
+    "frame": 10,
+    "variable": "imgFrame4",
+    "nodes": ["15:5300"]
+  },
+  {
+    "file": "public/assets/hero-dots.svg",
+    "source": "assets/fabf11bc-6ba2-4d5c-b5e8-f37d09606437.svg",
+    "sha256": "0ff55c193b808afd4687bbe57909e205132df46d8d4fd37e2ce9547da6237377",
+    "svgRoot": {
+      "width": "40",
+      "height": "8",
+      "viewBox": "0 0 40 8"
+    },
+    "frame": 1,
+    "variable": "imgGroup4",
+    "nodes": ["3:131"]
+  },
+  {
+    "file": "public/assets/back.svg",
+    "source": "assets/6297ca5e-f05a-4ccc-a57a-8a48ac35a959.svg",
+    "sha256": "66aea4dd7e0e227a5cbb167fb376767ac27655d30f65c7a53b2205cfce3d976e",
+    "svgRoot": {
+      "width": "13.1669",
+      "height": "7.33345",
+      "viewBox": "0 0 13.1669 7.33345"
+    },
+    "frame": 11,
+    "variable": "imgArrowLeft2",
+    "nodes": ["I15:5745;29221:4975"]
+  },
+  {
+    "file": "public/assets/star.svg",
+    "source": "assets/dd84f735-a537-4612-af95-f93ac99fcfb5.svg",
+    "sha256": "a707499d73b16690d029df6070f372ddee12e700884fdbaae4d68ad1e00733dd",
+    "svgRoot": {
+      "width": "11.6682",
+      "height": "11.0843",
+      "viewBox": "0 0 11.6682 11.0843"
+    },
+    "frame": 11,
+    "variable": "imgStar",
+    "nodes": ["I15:5663;11:1193"]
+  },
+  {
+    "file": "public/assets/minus.svg",
+    "source": "assets/a1633284-4744-437d-a3ea-0efc5c371850.svg",
+    "sha256": "47af0f9b2bbb018a225118b4ba0f1ccc2a5887cb9d90efd09ada691ea34deb56",
+    "svgRoot": {
+      "width": "16",
+      "height": "16",
+      "viewBox": "0 0 16 16"
+    },
+    "frame": 11,
+    "variable": "imgFrame",
+    "nodes": ["70410:4203"]
+  },
+  {
+    "file": "public/assets/plus.svg",
+    "source": "assets/dd326b41-aca4-42e9-b72e-f8bb1170560d.svg",
+    "sha256": "5727571b6801480b34da01eb9144cfbdf9b9889a59a00e0f6e53327c1a56d174",
+    "svgRoot": {
+      "width": "16",
+      "height": "16",
+      "viewBox": "0 0 16 16"
+    },
+    "frame": 11,
+    "variable": "imgFrame1",
+    "nodes": ["70410:4207"]
+  }
+]

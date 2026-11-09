@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-08",
+  "timezone": "America/Sao_Paulo",
+  "branch": "feat/etapa-1-foundation",
+  "head": "fea4e7c7d35be125150576d3d03af2460023c17f",
+  "baseline": {
+    "check": 0,
+    "build": 0,
+    "e2e": {
+      "passed": 21,
+      "failed": 0
+    }
+  },
+  "final": {
+    "check": 0,
+    "build": 0,
+    "e2e": {
+      "exitCode": 0,
+      "passed": 54,
+      "failed": 0,
+      "byViewport": {
+        "mobile-390": 18,
+        "tablet-768": 18,
+        "desktop-1440": 18
+      },
+      "rawReport": "test-results/results.json",
+      "htmlReport": "playwright-report/index.html"
+    },
+    "buildWarning": "One minified chunk is 503.52 kB, above Vite’s 500 kB advisory threshold; no limit was changed."
+  },
+  "executionNote": "A build and Playwright started simultaneously once; three mobile openings failed as dist was being replaced. The isolated full rerun passed.",
+  "visualEvidence": "Full-page catalog and detail PNGs and detail-geometry.json attachments in the three Playwright output directories; Figma source frames 02 and 11.",
+  "assetCount": 26,
+  "assetHashMismatch": [],
+  "dependencyManifestsUnchanged": true,
+  "readmeUnchanged": true,
+  "committed": false,
+  "pushed": false,
+  "deployed": false
+}

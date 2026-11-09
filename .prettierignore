@@ -1,0 +1,8 @@
+docs/CHALLENGE.md
+docs/evidence/lighthouse/*.report.*
+package-lock.json
+node_modules
+dist
+playwright-report
+test-results
+public/mockServiceWorker.js

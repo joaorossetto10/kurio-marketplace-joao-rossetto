@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-09",
+  "timezone": "America/Sao_Paulo",
+  "branch": "feat/etapa-1-foundation",
+  "head": "fea4e7c7d35be125150576d3d03af2460023c17f",
+  "baseline": {
+    "checkExitCode": 0,
+    "buildExitCode": 0,
+    "e2ePassed": 54
+  },
+  "final": {
+    "checkExitCode": 0,
+    "buildExitCode": 0,
+    "e2eExitCode": 0,
+    "e2ePassed": 99,
+    "e2eFailed": 0,
+    "e2eFlaky": 0,
+    "e2eSkipped": 0,
+    "byViewport": {
+      "mobile-390": 33,
+      "tablet-768": 33,
+      "desktop-1440": 33
+    },
+    "rawReport": "test-results/results.json",
+    "htmlReport": "playwright-report/index.html",
+    "buildWarning": "A minified chunk is 529.55 kB, above Vite's 500 kB advisory threshold; no limit was changed."
+  },
+  "integrationEvidence": {
+    "rest": "The order E2E asserts Response.fromServiceWorker() on POST /api/orders.",
+    "socket": "The business E2E observes nft.updated and order.updated effects through socket.io-client, discards stale/duplicate events, and confirms REST reconciliation after a dropped socket and missed change.",
+    "idempotency": "The timeout E2E compares the persisted attempt key and body with the first POST before its response, then reloads and resumes a single order."
+  },
+  "readmeUnchanged": true,
+  "dependencyManifestsUnchanged": true,
+  "committed": false,
+  "pushed": false,
+  "deployed": false
+}

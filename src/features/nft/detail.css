@@ -1,0 +1,210 @@
+@layer components {
+  .detail-page {
+    width: min(1200px, calc(100% - 48px));
+    margin: 32px auto 0;
+  }
+  .detail-product {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 573px minmax(0, 1fr);
+    gap: 32px;
+  }
+  .detail-gallery {
+    position: relative;
+    display: grid;
+    grid-template-columns: 100px 444px;
+    gap: 28px;
+    min-height: 448px;
+  }
+  .detail-gallery-controls {
+    display: grid;
+    gap: 16px;
+  }
+  .detail-thumbnail {
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .detail-thumbnail[aria-pressed='true'] {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
+  .detail-thumbnail img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  .detail-gallery-dot {
+    display: none;
+  }
+  .detail-art-main {
+    align-self: center;
+    width: 444px;
+    height: 444px;
+    padding: 20px;
+    border-radius: 6px;
+    background: var(--card);
+  }
+  .detail-art-main img {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+  }
+  .detail-mobile-actions {
+    display: none;
+  }
+  .detail-sheet {
+    position: relative;
+    min-width: 0;
+  }
+  .detail-buy-bar {
+    margin-top: 24px;
+  }
+  .detail-information {
+    margin-top: 96px;
+  }
+  .detail-related {
+    margin-top: 96px;
+  }
+  .detail-related .nft-art {
+    height: 245px;
+  }
+  .quantity-input {
+    appearance: textfield;
+  }
+  .quantity-input::-webkit-inner-spin-button,
+  .quantity-input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  .detail-buy-bar > p:empty {
+    display: none;
+  }
+}
+@media (min-width: 1280px) {
+  .detail-buy-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .detail-buy-bar > p {
+    width: 100%;
+  }
+  .detail-buy-bar > .mt-4 {
+    margin-top: 0;
+  }
+}
+@media (min-width: 640px) and (max-width: 1279px) {
+  .detail-product {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail-gallery {
+    width: 573px;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 639px) {
+  .detail-page {
+    width: 100%;
+    margin: 0;
+    padding-bottom: 180px;
+  }
+  .detail-product {
+    display: block;
+  }
+  .detail-gallery {
+    display: block;
+    height: 506px;
+    min-height: 0;
+    background: linear-gradient(138deg, #241612 12%, #2f1d15 107%);
+  }
+  .detail-art-main {
+    position: absolute;
+    top: 66px;
+    left: 28px;
+    width: calc(100% - 56px);
+    height: auto;
+    aspect-ratio: 1;
+    padding: 0;
+    border-radius: 24px;
+  }
+  .detail-art-main img {
+    aspect-ratio: 1;
+  }
+  .detail-mobile-actions {
+    position: absolute;
+    inset: 23px 28px auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  .detail-mobile-actions > * {
+    border-radius: 999px;
+  }
+  .detail-gallery-controls {
+    position: absolute;
+    z-index: 1;
+    top: 345px;
+    left: 50%;
+    display: flex;
+    gap: 0;
+    transform: translateX(-50%);
+  }
+  .detail-thumbnail {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 44px;
+    overflow: visible;
+  }
+  .detail-thumbnail img {
+    display: none;
+  }
+  .detail-thumbnail[aria-pressed='true'] {
+    outline: none;
+  }
+  .detail-gallery-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+  }
+  .detail-thumbnail[aria-pressed='true'] .detail-gallery-dot {
+    background: var(--primary);
+  }
+  .detail-thumbnail:focus-visible {
+    outline: 2px solid var(--ring);
+  }
+  .detail-sheet {
+    position: relative;
+    z-index: 2;
+    margin-top: -114px;
+    padding: 32px 24px;
+    border-radius: 33px 33px 0 0;
+    background: var(--card);
+  }
+  .detail-buy-bar {
+    position: fixed;
+    min-height: 164px;
+    z-index: 30;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 20px 24px calc(16px + env(safe-area-inset-bottom));
+    border-radius: 33px 33px 0 0;
+    background: var(--card);
+    box-shadow: 0 -6px 24px #140d0a40;
+  }
+  .detail-information,
+  .detail-related {
+    margin: 32px 24px 0;
+  }
+  .detail-related .nft-art {
+    height: auto;
+  }
+}

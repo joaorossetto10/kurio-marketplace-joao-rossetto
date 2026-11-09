@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-08",
+  "timezone": "America/Sao_Paulo",
+  "branch": "feat/etapa-1-foundation",
+  "head": "fea4e7c7d35be125150576d3d03af2460023c17f",
+  "uncommitted": true,
+  "checks": [
+    {
+      "command": "npm ci",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "executedBy": "npm run check / npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run lint",
+      "executedBy": "npm run check",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run format:check",
+      "executedBy": "npm run check",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "warning": "Application chunk 567.76 kB uncompressed / 179.29 kB gzip; no size threshold changed."
+    },
+    {
+      "command": "npm run test:e2e",
+      "exitCode": 0,
+      "passed": 21,
+      "failed": 0,
+      "viewports": [390, 768, 1440],
+      "report": "playwright-report/index.html",
+      "rawReport": "test-results/results.json"
+    }
+  ],
+  "coverage": [
+    "REST UI → Query → Axios → MSW → validated response → UI; responses fromServiceWorker=true",
+    "URL search and refresh",
+    "Out-of-order search UI",
+    "Direct routes, refresh, 404, no horizontal overflow",
+    "Loading, empty, HTTP503/retry, malformed JSON",
+    "Socket.IO connect, two server events, heartbeat with 31s simulated clock, disconnect and new connection",
+    "Local font and visible images, Escape and focus restoration, reduced-motion"
+  ],
+  "limits": [
+    "No complete authentication/cart/checkout",
+    "No Lighthouse run or full visual fidelity claim",
+    "No baseline snapshots created or updated",
+    "Offline scenario implemented but not a dedicated E2E assertion",
+    "Uncommitted working tree; HEAD alone does not identify tested source"
+  ],
+  "preservation": {
+    "readmeUnchanged": true,
+    "noCommit": true,
+    "noPush": true,
+    "noDeploy": true,
+    "competitiveReportsUnchanged": true
+  }
+}

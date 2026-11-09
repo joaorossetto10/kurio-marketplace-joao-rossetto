@@ -1,0 +1,83 @@
+{
+  "tool": "Lighthouse 13.6.0",
+  "environment": "Windows, Node 24.20.0, npm 11.16.0, Playwright Chromium 158, local Vite preview on 127.0.0.1:4173",
+  "conditions": "Demo build, MSW enabled, default scenario; mobile CLI defaults and --preset=desktop; headless Playwright Chromium",
+  "results": {
+    "home-mobile": {
+      "scores": {
+        "performance": 92,
+        "accessibility": 96,
+        "best-practices": 96,
+        "seo": 92
+      },
+      "medians": {
+        "lcpMs": 3121.0340499999998,
+        "cls": 0.0020489158509279888,
+        "tbtMs": 146
+      },
+      "reports": [
+        "home-mobile-1.report.json",
+        "home-mobile-2.report.json",
+        "home-mobile-3.report.json"
+      ],
+      "meetsTargets": true
+    },
+    "home-desktop": {
+      "scores": {
+        "performance": 99,
+        "accessibility": 95,
+        "best-practices": 96,
+        "seo": 92
+      },
+      "medians": {
+        "lcpMs": 968.259975,
+        "cls": 0.004322426108381736,
+        "tbtMs": 0
+      },
+      "reports": [
+        "home-desktop-1.report.json",
+        "home-desktop-2.report.json",
+        "home-desktop-3.report.json"
+      ],
+      "meetsTargets": true
+    },
+    "detail-mobile": {
+      "scores": {
+        "performance": 93,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 92
+      },
+      "medians": {
+        "lcpMs": 3029.9543999999996,
+        "cls": 0.07791364569256738,
+        "tbtMs": 80
+      },
+      "reports": [
+        "detail-mobile-1.report.json",
+        "detail-mobile-2.report.json",
+        "detail-mobile-3.report.json"
+      ],
+      "meetsTargets": true
+    },
+    "detail-desktop": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 97,
+        "best-practices": 96,
+        "seo": 92
+      },
+      "medians": {
+        "lcpMs": 796.5591000000001,
+        "cls": 0.0008465763458180263,
+        "tbtMs": 0
+      },
+      "reports": [
+        "detail-desktop-1.report.json",
+        "detail-desktop-2.report.json",
+        "detail-desktop-3.report.json"
+      ],
+      "meetsTargets": true
+    }
+  }
+}

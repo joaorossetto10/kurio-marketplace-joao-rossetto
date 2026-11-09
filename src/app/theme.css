@@ -1,0 +1,311 @@
+@import '@fontsource/roboto-mono/latin-400.css';
+@import '@fontsource/roboto-mono/latin-500.css';
+@import '@fontsource/roboto-mono/latin-700.css';
+@import 'tailwindcss';
+
+/* sRGB literals from Figma. Semantic aliases and adaptations: docs/STAGE-2.md. */
+:root {
+  color-scheme: dark;
+  --background: #140d0a;
+  --foreground: #f5f1eb;
+  --card: #241612;
+  --card-foreground: #f5f1eb;
+  --popover: #241612;
+  --popover-foreground: #f5f1eb;
+  --primary: #d28a4c;
+  --primary-foreground: #140d0a;
+  --secondary: #2f1d15;
+  --secondary-foreground: #f5f1eb;
+  --muted: #2f1d15;
+  --muted-foreground: #cfb28c;
+  --accent: #2f1d15;
+  --accent-foreground: #e89b55;
+  --text-subtle: #b39463;
+  --border: #3f2319;
+  --input: #95724d;
+  --ring: #e89b55;
+  --destructive: #f0805f;
+  --destructive-foreground: #140d0a;
+  --radius: 0.375rem;
+}
+@theme inline {
+  --font-sans: 'Roboto Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-text-subtle: var(--text-subtle);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --spacing-section: 96px;
+  --container-marketplace: 1200px;
+}
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+  html {
+    scroll-padding-top: 24px;
+  }
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Roboto Mono', monospace;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+  button:not(:disabled),
+  a,
+  summary {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  h1,
+  h2,
+  h3,
+  p {
+    overflow-wrap: break-word;
+  }
+}
+@layer components {
+  .market-container {
+    width: min(1200px, calc(100% - 48px));
+    margin-inline: auto;
+  }
+  .wordmark {
+    font-size: 28px;
+    line-height: 40px;
+    font-weight: 700;
+    letter-spacing: 2.8px;
+  }
+  .page-heading {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .hero {
+    position: relative;
+    isolation: isolate;
+    background: var(--background);
+    overflow: hidden;
+    border-radius: 24px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('/assets/hero-background.svg') center / cover;
+  }
+  .hero-title {
+    font-size: 43px;
+    line-height: 70px;
+    font-weight: 700;
+  }
+  .hero-art {
+    width: 450px;
+    height: 450px;
+    flex: none;
+    object-fit: cover;
+    border-radius: 24px;
+  }
+  .hero-cta {
+    width: 140px;
+    height: 40px;
+    margin-top: 32px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .hero-dots {
+    position: absolute;
+    width: 40px;
+    height: 8px;
+    bottom: 43px;
+    left: 600px;
+  }
+  .catalog-layout {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 310px minmax(0, 1fr);
+  }
+  .nft-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 34px;
+    row-gap: 44px;
+  }
+  .nft-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(140deg, #241612 12%, #2f1d15 107%);
+  }
+  .nft-art img {
+    width: calc(100% - 8px);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  .skeleton-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: var(--secondary);
+  }
+  .skeleton-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, #cfb28c16, transparent);
+    animation: shimmer 1.5s infinite;
+  }
+  .mobile-tabbar {
+    position: fixed;
+    z-index: 30;
+    inset: auto 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 16px 12px calc(16px + env(safe-area-inset-bottom));
+    background: var(--card);
+    border-radius: 32px 32px 0 0;
+  }
+  .mobile-tabbar a {
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+    min-width: 56px;
+    min-height: 44px;
+    font-size: 10px;
+    color: var(--muted-foreground);
+  }
+  .mobile-tabbar a[aria-current='page'] {
+    color: var(--ring);
+  }
+}
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+@media (min-width: 1280px) {
+  .wordmark {
+    width: 160px;
+    font-size: 14px;
+    letter-spacing: 1.4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+@media (max-width: 1279px) {
+  .catalog-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero-title {
+    font-size: 32px;
+    line-height: 1.5;
+  }
+  .hero-art {
+    width: 40%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
+@media (max-width: 639px) {
+  body {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+  .hero {
+    min-height: 190px;
+    border-radius: 24px;
+    background: var(--card);
+  }
+  .hero::before {
+    background-image: url('/assets/hero-mobile-background.svg');
+  }
+  .hero-cta {
+    width: auto;
+    height: auto;
+    margin-top: 1px;
+    padding: 0;
+    background: transparent;
+    color: var(--ring);
+    font-size: 12px;
+  }
+  .hero-dots {
+    left: calc(50% - 16.5px);
+    bottom: 6px;
+    width: 33px;
+    height: 7px;
+  }
+  .hero-title {
+    font-size: 18px;
+    line-height: 29px;
+  }
+  .hero-art {
+    position: absolute;
+    width: 138px;
+    height: 138px;
+    right: 16px;
+    top: 10px;
+    border-radius: 16px;
+  }
+  .nft-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+    align-items: start;
+  }
+  .nft-grid > :nth-child(even) {
+    transform: translateY(32px);
+  }
+  .nft-art {
+    height: auto;
+    padding: 12px 4px 20px;
+  }
+  .market-container {
+    width: calc(100% - 48px);
+  }
+}

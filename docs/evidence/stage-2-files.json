@@ -1,0 +1,316 @@
+{
+  "baseline": "Design audit, 2026-11-07 (31 original nonignored files)",
+  "branch": "feat/etapa-1-foundation",
+  "head": "fea4e7c7d35be125150576d3d03af2460023c17f",
+  "readmeUnchanged": true,
+  "files": [
+    {
+      "file": ".env.demo",
+      "state": "created"
+    },
+    {
+      "file": ".env.example",
+      "state": "created"
+    },
+    {
+      "file": ".gitignore",
+      "state": "modified"
+    },
+    {
+      "file": ".prettierignore",
+      "state": "modified"
+    },
+    {
+      "file": "ARCHITECTURE.md",
+      "state": "modified"
+    },
+    {
+      "file": "components.json",
+      "state": "created"
+    },
+    {
+      "file": "docs/DEVELOPMENT.md",
+      "state": "modified"
+    },
+    {
+      "file": "docs/REQUIREMENTS.md",
+      "state": "modified"
+    },
+    {
+      "file": "docs/STAGE-2.md",
+      "state": "created"
+    },
+    {
+      "file": "docs/evidence/design-assets.json",
+      "state": "created"
+    },
+    {
+      "file": "docs/evidence/stage-2-checks.json",
+      "state": "created"
+    },
+    {
+      "file": "docs/evidence/stage-2-files.json",
+      "state": "created"
+    },
+    {
+      "file": "index.html",
+      "state": "modified"
+    },
+    {
+      "file": "package-lock.json",
+      "state": "modified"
+    },
+    {
+      "file": "package.json",
+      "state": "modified"
+    },
+    {
+      "file": "playwright.config.ts",
+      "state": "modified"
+    },
+    {
+      "file": "public/README.md",
+      "state": "modified"
+    },
+    {
+      "file": "public/assets/Roboto-Mono-OFL.txt",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/arrow-mobile.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/cart.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/close.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/emerald.png",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/filter.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/golden.png",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/heart.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/hero-background.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/hero-dots.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/hero-mobile-background.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/hero-mobile-dots.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/home.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/ivory.png",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/login.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/sage.png",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/search.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/social-1.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/social-2.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/social-3.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/social-4.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/social-5.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/assets/user.svg",
+      "state": "created"
+    },
+    {
+      "file": "public/mockServiceWorker.js",
+      "state": "created"
+    },
+    {
+      "file": "src/app/App.tsx",
+      "state": "modified"
+    },
+    {
+      "file": "src/app/bootstrap.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/app/layout.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/app/mount.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/app/query-client.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/app/router.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/app/styles.css",
+      "state": "modified"
+    },
+    {
+      "file": "src/app/theme.css",
+      "state": "created"
+    },
+    {
+      "file": "src/features/README.md",
+      "state": "modified"
+    },
+    {
+      "file": "src/features/catalog/HomePage.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/features/catalog/api.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/features/foundation/LabPage.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/features/foundation/pages.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/main.tsx",
+      "state": "modified"
+    },
+    {
+      "file": "src/mocks/README.md",
+      "state": "modified"
+    },
+    {
+      "file": "src/mocks/browser.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/mocks/fixtures.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/mocks/handlers.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/mocks/scenarios.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/mocks/socket.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/README.md",
+      "state": "modified"
+    },
+    {
+      "file": "src/shared/api/client.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/api/contracts.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/lib/utils.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/realtime/probe.ts",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/button.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/card.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/feedback.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/icon.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/input.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/label.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/panel.tsx",
+      "state": "created"
+    },
+    {
+      "file": "src/shared/ui/skeleton.tsx",
+      "state": "created"
+    },
+    {
+      "file": "tests/e2e/foundation.spec.ts",
+      "state": "modified"
+    },
+    {
+      "file": "tests/e2e/stage-2.spec.ts",
+      "state": "created"
+    },
+    {
+      "file": "vite.config.ts",
+      "state": "modified"
+    }
+  ]
+}
