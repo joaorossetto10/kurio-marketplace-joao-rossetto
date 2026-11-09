@@ -192,7 +192,7 @@ export const nftCatalog: NftDetail[] = previews.map((item, index) => ({
   networkLabel:
     networks.find((n) => n.id === item.network)?.label ?? 'Ethereum',
   description:
-    'Um colecionável digital 1/50 finalizado à mão da coleção Kurio Editions, com arte desbloqueável e acesso para colecionadores.',
+    'Um colecionável digital finalizado à mão, com arte desbloqueável e acesso para colecionadores.',
   creator: 'Nova Sato',
   attributes:
     item.artwork === 'emerald'

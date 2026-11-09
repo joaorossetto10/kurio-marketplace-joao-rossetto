@@ -108,6 +108,17 @@ export function createOrder(
       )
     return { order: settle(existing, entries), replay: true }
   }
+  const pending = entries.filter(
+    ({ order }) => order.ownerId === ownerId && order.status === 'pending',
+  )
+  for (const entry of pending) {
+    if (settle(entry, entries).status === 'pending')
+      throw new MockBusinessError(
+        'Há um pedido em processamento. Consulte o pedido antes de comprar novamente.',
+        409,
+        'ORDER_PENDING',
+      )
+  }
   const quote = readQuote(ownerId, body.data.quoteId)
   if (
     quote.walletId !== body.data.walletId ||

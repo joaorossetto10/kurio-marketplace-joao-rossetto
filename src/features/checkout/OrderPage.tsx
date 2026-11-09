@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Link, useParams } from '@tanstack/react-router'
 import { useAuth } from '@/features/auth/auth-context'
@@ -5,6 +6,7 @@ import { Button } from '@/shared/ui/button'
 import { Feedback } from '@/shared/ui/feedback'
 import { Skeleton } from '@/shared/ui/skeleton'
 import { orderOptions } from './order-api'
+import { clearAttempt } from './attempt'
 
 export function OrderPage() {
   const { orderId } = useParams({ from: '/pedidos/$orderId' })
@@ -15,15 +17,20 @@ export function OrderPage() {
     refetchInterval: (state) =>
       state.state.data?.status === 'pending' ? 1000 : false,
   })
+  const order = query.data
+  useEffect(() => {
+    if (order && order.status !== 'pending')
+      clearAttempt(ownerId, order.quote.id)
+  }, [ownerId, order])
   if (auth.loading)
     return (
-      <main className="market-container py-12">
+      <div className="market-container py-12">
         <Skeleton className="h-80" />
-      </main>
+      </div>
     )
   if (!auth.user)
     return (
-      <main className="market-container py-12">
+      <div className="market-container py-12">
         <h1 className="page-heading">Acompanhar pedido</h1>
         <Feedback title="Acesso reservado">
           Entre para consultar seus pedidos.
@@ -31,10 +38,10 @@ export function OrderPage() {
         <Button asChild className="mt-6">
           <Link to="/entrar">Entrar</Link>
         </Button>
-      </main>
+      </div>
     )
   return (
-    <main className="market-container py-12">
+    <div className="market-container py-12">
       <h1 className="page-heading mb-8">Acompanhar pedido</h1>
       {query.isPending ? (
         <div role="status" aria-label="Carregando pedido">
@@ -85,7 +92,7 @@ export function OrderPage() {
               </p>
             </>
           )}
-          <div className="mt-7 grid grid-cols-2 gap-4 border-y border-border py-4 text-xs">
+          <div className="mt-7 grid grid-cols-2 gap-4 border-y border-border py-4 text-xs wrap-anywhere">
             <div>
               <span className="block text-muted-foreground">Pedido</span>
               {query.data.id}
@@ -121,7 +128,7 @@ export function OrderPage() {
                     {item.editionLabel} × {item.quantity}
                   </span>
                 </span>
-                <strong className="text-xs text-accent-foreground">
+                <strong className="max-w-[40%] text-right text-xs wrap-anywhere text-accent-foreground">
                   {item.lineTotalEth} ETH
                 </strong>
               </li>
@@ -161,6 +168,6 @@ export function OrderPage() {
           </Button>
         </section>
       )}
-    </main>
+    </div>
   )
 }

@@ -17,9 +17,14 @@ function Header() {
   const auth = useAuth()
   const path = useLocation({ select: (location) => location.pathname })
   const divided = path === '/' || path === '/perfil' || path === '/carteiras'
+  const visibility = path.startsWith('/nfts/')
+    ? 'hidden xl:block'
+    : path === '/entrar' || path === '/cadastro'
+      ? 'hidden sm:block'
+      : ''
   return (
     <header
-      className={`market-container pt-6 ${path.startsWith('/nfts/') ? 'hidden xl:block' : ''} ${divided ? 'xl:border-b xl:border-border' : ''}`}
+      className={`market-container pt-6 ${visibility} ${divided ? 'xl:border-b xl:border-border' : ''}`}
     >
       <div
         className={`hidden items-center justify-between gap-8 xl:flex ${divided ? 'min-h-[44px]' : 'min-h-[45px]'}`}

@@ -92,7 +92,7 @@ export function FavoriteButton({
           busy.current = true
           mutation.mutate(!active)
         }}
-        className={`grid size-10 place-items-center rounded-full border border-border text-accent-foreground disabled:opacity-60 ${active ? 'bg-primary ring-2 ring-accent-foreground' : 'bg-card'}`}
+        className={`group grid size-10 place-items-center rounded-full border border-border text-accent-foreground disabled:opacity-60 ${active ? 'bg-primary ring-2 ring-accent-foreground' : 'bg-card'}`}
       >
         <Heart />
       </button>
@@ -117,7 +117,7 @@ function Heart() {
   return (
     <span
       aria-hidden="true"
-      className="block size-5 bg-contain bg-center bg-no-repeat"
+      className="block size-5 bg-contain bg-center bg-no-repeat group-aria-pressed:brightness-0"
       style={{ backgroundImage: "url('/assets/heart.svg')" }}
     />
   )

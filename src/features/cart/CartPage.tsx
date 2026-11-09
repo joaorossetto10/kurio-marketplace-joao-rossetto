@@ -58,7 +58,7 @@ export function CartPage() {
     },
   })
   return (
-    <main className="market-container mt-8 min-h-[440px]">
+    <div className="market-container mt-8 min-h-[440px]">
       <h1 className="page-heading mb-8">Carrinho de NFTs</h1>
       {query.isPending ? (
         <div role="status" aria-label="Carregando carrinho">
@@ -79,7 +79,7 @@ export function CartPage() {
           Explore o mercado e escolha uma edição para começar sua coleção.
         </Feedback>
       ) : (
-        <div className="grid items-start gap-7 xl:grid-cols-[minmax(0,1fr)_332px]">
+        <div className="grid grid-cols-1 items-start gap-7 xl:grid-cols-[minmax(0,1fr)_332px]">
           <ul className="space-y-4" aria-label="Itens do carrinho">
             {query.data.items.map((item) => (
               <li
@@ -102,10 +102,13 @@ export function CartPage() {
                   <p className="text-muted-foreground">
                     Edição: {item.editionLabel} · Quantidade: {item.quantity}
                   </p>
-                  <p className="break-all text-xs text-muted-foreground">
-                    Preço unitário: {item.unitPriceEth} ETH
+                  <p className="text-xs wrap-anywhere text-muted-foreground">
+                    Preço unitário:{' '}
+                    <span className="inline-block max-w-full">
+                      {item.unitPriceEth} ETH
+                    </span>
                   </p>
-                  <p className="break-all font-bold text-accent-foreground">
+                  <p className="font-bold wrap-anywhere text-accent-foreground">
                     {item.lineTotalEth} ETH
                   </p>
                   {item.quantity > item.stock && (
@@ -156,6 +159,7 @@ export function CartPage() {
                     <Button
                       variant="ghost"
                       size="sm"
+                      aria-label={`Remover ${item.name}`}
                       disabled={mutation.isPending}
                       onClick={() =>
                         mutation.mutate({
@@ -165,7 +169,7 @@ export function CartPage() {
                         })
                       }
                     >
-                      Remover {item.name}
+                      Remover
                     </Button>
                   </div>
                 </div>
@@ -190,11 +194,12 @@ export function CartPage() {
                 Código promocional
               </label>
               <Input
+                key={query.data.coupon ?? ''}
                 id="cart-coupon"
                 name="coupon"
                 placeholder="Código promocional"
                 defaultValue={query.data.coupon ?? ''}
-                className="min-w-0"
+                className="min-w-0 flex-1"
               />
               <Button type="submit" disabled={mutation.isPending}>
                 Aplicar
@@ -212,7 +217,7 @@ export function CartPage() {
                 </button>
               </p>
             )}
-            <p className="mt-5 flex justify-between gap-4 text-sm">
+            <p className="mt-5 flex flex-wrap justify-between gap-x-4 gap-y-1 text-sm">
               <span>Quantidade total</span>
               <span>{query.data.totalQuantity}</span>
             </p>
@@ -224,17 +229,23 @@ export function CartPage() {
             </p>
             {summary.data && (
               <div className="mt-4 space-y-2 text-sm">
-                <p className="flex justify-between">
+                <p className="flex flex-wrap justify-between gap-x-3">
                   <span>Desconto</span>
-                  <span>{summary.data.discountEth} ETH</span>
+                  <span className="wrap-anywhere">
+                    {summary.data.discountEth} ETH
+                  </span>
                 </p>
-                <p className="flex justify-between">
+                <p className="flex flex-wrap justify-between gap-x-3">
                   <span>Taxa de rede</span>
-                  <span>{summary.data.feeEth} ETH</span>
+                  <span className="wrap-anywhere">
+                    {summary.data.feeEth} ETH
+                  </span>
                 </p>
-                <p className="flex justify-between border-t border-border pt-2 font-bold text-accent-foreground">
+                <p className="flex flex-wrap justify-between gap-x-3 border-t border-border pt-2 font-bold text-accent-foreground">
                   <span>Total estimado</span>
-                  <span>{summary.data.totalEth} ETH</span>
+                  <span className="wrap-anywhere">
+                    {summary.data.totalEth} ETH
+                  </span>
                 </p>
               </div>
             )}
@@ -248,7 +259,10 @@ export function CartPage() {
                 {notice}
               </p>
             )}
-            <Button asChild className="mt-6 h-[60px] w-full">
+            <Button
+              asChild
+              className="mt-6 min-h-[60px] w-full rounded-full whitespace-normal text-center xl:rounded-md"
+            >
               <Link to="/pagamento">Conectar e finalizar</Link>
             </Button>
             <p className="mt-4 text-xs leading-6 text-muted-foreground">
@@ -261,6 +275,6 @@ export function CartPage() {
       <Button variant="outline" asChild className="mt-8">
         <Link to="/">Continuar explorando</Link>
       </Button>
-    </main>
+    </div>
   )
 }

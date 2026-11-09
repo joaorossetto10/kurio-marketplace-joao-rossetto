@@ -567,7 +567,16 @@ test('timeout após criação retoma a mesma tentativa sem pedido duplicado', as
   await expect(
     page.getByText(/A resposta do pedido não foi confirmada/),
   ).toBeVisible({ timeout: 15000 })
+  await expect(
+    page.getByRole('button', { name: 'Gerar nova cotação' }),
+  ).toBeDisabled()
+  await expect(
+    page.getByRole('button', { name: 'Confirmar compra' }),
+  ).toBeDisabled()
   await page.reload()
+  await expect(
+    page.getByRole('button', { name: 'Gerar nova cotação' }),
+  ).toBeDisabled()
   await page.getByRole('button', { name: 'Retomar tentativa' }).click()
   await expect(page).toHaveURL(/\/pedidos\/[a-f0-9-]+/)
   const orders = await browserApi(page, '/orders')
@@ -712,6 +721,8 @@ test('cliques repetidos criam um pedido e a liquidação preserva itens acrescen
 }) => {
   await addEmerald(page)
   await signIn(page)
+  await page.goto('/pagamento?mock=order-pending')
+  await expect(page.getByRole('radio', { name: /Reserva/ })).toBeVisible()
   await browserApi(page, '/wallets/connection', 'POST', {
     walletId: 'alice-primary',
     network: 'ethereum',
@@ -741,6 +752,26 @@ test('cliques repetidos criam um pedido e a liquidação preserva itens acrescen
   expect([first.status, repeated.status].sort()).toEqual([200, 201])
   const order = orderSchema.parse(first.body)
   expect(orderSchema.parse(repeated.body).id).toBe(order.id)
+  const distinctQuote = quoteSchema.parse(
+    (
+      await browserApi(page, '/quotes', 'POST', {
+        walletId: 'alice-primary',
+        network: 'ethereum',
+        provider: 'metamask',
+      })
+    ).body,
+  )
+  const secondPurchase = await browserApi(
+    page,
+    '/orders',
+    'POST',
+    { ...body, quoteId: distinctQuote.id },
+    { 'Idempotency-Key': crypto.randomUUID() },
+  )
+  expect(secondPurchase.status).toBe(409)
+  expect(secondPurchase.body).toMatchObject({
+    error: { code: 'ORDER_PENDING' },
+  })
   expect(
     (
       await browserApi(page, '/cart/items', 'POST', {
@@ -750,6 +781,8 @@ test('cliques repetidos criam um pedido e a liquidação preserva itens acrescen
       })
     ).status,
   ).toBe(201)
+  await page.goto('/pagamento')
+  await expect(page.getByRole('radio', { name: /Reserva/ })).toBeVisible()
   await page.waitForTimeout(1900)
   expect(
     orderSchema.parse((await browserApi(page, `/orders/${order.id}`)).body)

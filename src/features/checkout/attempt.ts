@@ -13,7 +13,8 @@ export function readAttempt(ownerId: string): Attempt | null {
   const raw = localStorage.getItem(storageKey(ownerId))
   if (!raw) return null
   try {
-    return attemptSchema.parse(JSON.parse(raw) as unknown)
+    const attempt = attemptSchema.parse(JSON.parse(raw) as unknown)
+    return attempt.ownerId === ownerId ? attempt : null
   } catch {
     return null
   }
@@ -23,8 +24,7 @@ export function persistAttempt(
   body: z.infer<typeof createOrderSchema>,
 ): Attempt {
   const previous = readAttempt(ownerId)
-  if (previous && JSON.stringify(previous.body) === JSON.stringify(body))
-    return previous
+  if (previous) return previous
   const attempt = {
     key: crypto.randomUUID(),
     ownerId,
@@ -34,6 +34,7 @@ export function persistAttempt(
   localStorage.setItem(storageKey(ownerId), JSON.stringify(attempt))
   return attempt
 }
-export function clearAttempt(ownerId: string) {
+export function clearAttempt(ownerId: string, quoteId?: string) {
+  if (quoteId && readAttempt(ownerId)?.body.quoteId !== quoteId) return
   localStorage.removeItem(storageKey(ownerId))
 }

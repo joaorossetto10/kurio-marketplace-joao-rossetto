@@ -272,7 +272,7 @@ function WalletForm({
       <h2 className="mb-6 font-bold">
         {wallet ? `Editar ${wallet.label}` : 'Adicionar carteira'}
       </h2>
-      <div className="grid min-w-0 gap-x-7 gap-y-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-x-7 gap-y-5 md:grid-cols-2">
         {fields.map((field) => (
           <div key={field.name}>
             <Label htmlFor={`wallet-${field.name}`}>{field.label}</Label>

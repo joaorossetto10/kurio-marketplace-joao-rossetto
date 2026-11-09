@@ -33,15 +33,15 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
     onError: (cause) => setError(cause.message),
   })
   return (
-    <main className="market-container min-h-[650px] py-12 sm:py-20">
-      <div className="mx-auto w-full max-w-[500px] rounded-[20px] bg-card px-7 py-10 shadow-2xl sm:px-12">
+    <div className="market-container min-h-[650px] pt-24 pb-12 sm:py-20">
+      <div className="mx-auto w-full max-w-[500px] sm:rounded-[20px] sm:bg-card sm:px-12 sm:py-10 sm:shadow-2xl">
         <Link
           to="/"
           className="wordmark mb-10 block text-center text-[32px] tracking-[3px]"
         >
           KURIO
         </Link>
-        <div className="mb-8 flex border-b border-border text-sm">
+        <div className="mb-8 hidden border-b border-border text-sm sm:flex">
           <Link
             to="/entrar"
             search={{ returnTo }}
@@ -164,6 +164,6 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
           </Link>
         </p>
       </div>
-    </main>
+    </div>
   )
 }

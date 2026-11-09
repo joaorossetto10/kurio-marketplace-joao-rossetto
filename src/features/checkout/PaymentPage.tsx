@@ -19,6 +19,7 @@ import {
 import { clearAttempt, persistAttempt, readAttempt } from './attempt'
 import { postOrder } from './order-api'
 import { ApiError } from '@/shared/api/client'
+import { buyerSchema } from '@/shared/api/contracts'
 
 const quoteKey = (ownerId: string) => `kurio.checkout.quote.v1.${ownerId}`
 const providers = [
@@ -53,13 +54,20 @@ export function PaymentPage() {
     connection.data?.connected &&
     connection.data.walletId === selected?.id &&
     connection.data.provider === provider
-  const stale = Boolean(
+  const priceChanged = Boolean(
     quote.data &&
     summary.data &&
     (quote.data.cartVersion !== summary.data.cartVersion ||
       quote.data.commercialVersion !== summary.data.commercialVersion ||
       quote.data.totalEth !== summary.data.totalEth),
   )
+  const walletChanged = Boolean(
+    quote.data &&
+    (quote.data.walletId !== selected?.id ||
+      quote.data.network !== selected.network ||
+      quote.data.provider !== provider),
+  )
+  const stale = priceChanged || walletChanged
   const connect = useMutation({
     mutationFn: connectWalletRequest,
     onSuccess: (data) => {
@@ -91,6 +99,7 @@ export function PaymentPage() {
   const orderMutation = useMutation({
     mutationFn: postOrder,
     onSuccess: (order) => {
+      if (order.status !== 'pending') clearAttempt(ownerId, order.quote.id)
       const mock = new URLSearchParams(window.location.search).get('mock')
       window.location.assign(
         `/pedidos/${order.id}` +
@@ -106,12 +115,23 @@ export function PaymentPage() {
           'QUOTE_EXPIRED',
           'WALLET_DISCONNECTED',
           'INSUFFICIENT_STOCK',
+          'ORDER_PENDING',
         ].includes(error.code)
       ) {
         clearAttempt(ownerId)
         setReviewed(false)
-        setNotice(`${error.message} Gere uma nova cotação e revise novamente.`)
+        setNotice(
+          error.code === 'ORDER_PENDING'
+            ? error.message
+            : `${error.message} Gere uma nova cotação e revise novamente.`,
+        )
         void client.invalidateQueries({ queryKey: ['summary'] })
+        return
+      }
+      if (error instanceof ApiError && error.status === 422) {
+        clearAttempt(ownerId)
+        setReviewed(false)
+        setNotice(error.message)
         return
       }
       setNotice(
@@ -122,13 +142,13 @@ export function PaymentPage() {
   const pendingAttempt = ownerId ? readAttempt(ownerId) : null
   if (auth.loading)
     return (
-      <main className="market-container py-12">
+      <div className="market-container py-12">
         <Skeleton className="h-80" />
-      </main>
+      </div>
     )
   if (!auth.user)
     return (
-      <main className="market-container py-12">
+      <div className="market-container py-12">
         <h1 className="page-heading mb-6">Pagamento com carteira</h1>
         <Feedback title="Entre para continuar a compra">
           Seu carrinho de visitante será mesclado à conta após o login.
@@ -138,12 +158,12 @@ export function PaymentPage() {
             Entrar e continuar
           </Link>
         </Button>
-      </main>
+      </div>
     )
   return (
-    <main className="market-container mt-8 min-h-[650px]">
+    <div className="market-container mt-8 min-h-[650px]">
       <h1 className="page-heading mb-8">Pagamento com carteira</h1>
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_430px]">
+      <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_430px]">
         <div className="order-1 space-y-7 xl:col-start-1 xl:row-start-1">
           <section aria-label="Carteiras cadastradas">
             <h2 className="mb-4 font-bold">Carteira conectada</h2>
@@ -157,6 +177,15 @@ export function PaymentPage() {
                 }}
               >
                 {wallets.error.message}
+              </Feedback>
+            ) : wallets.data.length === 0 ? (
+              <Feedback title="Nenhuma carteira cadastrada">
+                <Link
+                  to="/carteiras"
+                  className="text-accent-foreground underline"
+                >
+                  Cadastrar carteira
+                </Link>
               </Feedback>
             ) : (
               <fieldset className="space-y-3">
@@ -175,7 +204,7 @@ export function PaymentPage() {
                         setReviewed(false)
                       }}
                     />
-                    <span>
+                    <span className="min-w-0 wrap-anywhere">
                       <strong className="block">{wallet.label}</strong>
                       <span className="text-sm text-muted-foreground">
                         {wallet.address.startsWith('0x') &&
@@ -246,25 +275,38 @@ export function PaymentPage() {
           className="order-3 space-y-4 xl:col-start-1 xl:row-start-2"
           onSubmit={(event) => {
             event.preventDefault()
-            if (!quote.data || !selected || stale || !reviewed || !connected)
+            if (
+              !quote.data ||
+              !selected ||
+              stale ||
+              !reviewed ||
+              !connected ||
+              readAttempt(ownerId)
+            )
               return
             const data = new FormData(event.currentTarget)
             const read = (key: string) => {
               const value = data.get(key)
               return typeof value === 'string' ? value : ''
             }
-            const body = {
-              quoteId: quote.data.id,
-              walletId: selected.id,
-              network: selected.network,
-              provider,
-              buyer: {
-                name: read('buyerName').trim(),
-                email: read('buyerEmail').trim(),
-                note: read('buyerNote').trim(),
-              },
+            const buyer = buyerSchema.safeParse({
+              name: read('buyerName').trim(),
+              email: read('buyerEmail').trim(),
+              note: read('buyerNote').trim(),
+            })
+            if (!buyer.success) {
+              setNotice('Confira nome, e-mail e observação do comprador.')
+              return
             }
-            orderMutation.mutate(persistAttempt(ownerId, body))
+            orderMutation.mutate(
+              persistAttempt(ownerId, {
+                quoteId: quote.data.id,
+                walletId: selected.id,
+                network: selected.network,
+                provider,
+                buyer: buyer.data,
+              }),
+            )
           }}
         >
           <h2 className="font-bold">Perfil do colecionador</h2>
@@ -275,6 +317,7 @@ export function PaymentPage() {
               name="buyerName"
               defaultValue={auth.user.name}
               minLength={2}
+              maxLength={80}
               required
               className="mt-2 h-[50px]"
             />
@@ -312,9 +355,13 @@ export function PaymentPage() {
           <Button
             type="submit"
             disabled={
-              !reviewed || stale || !connected || orderMutation.isPending
+              !reviewed ||
+              stale ||
+              !connected ||
+              Boolean(pendingAttempt) ||
+              orderMutation.isPending
             }
-            className="h-[60px] w-full"
+            className="h-[60px] w-full rounded-full xl:rounded-md"
           >
             {orderMutation.isPending ? 'Enviando pedido…' : 'Confirmar compra'}
           </Button>
@@ -349,6 +396,7 @@ export function PaymentPage() {
             className="mt-6 w-full"
             disabled={
               !connected ||
+              Boolean(pendingAttempt) ||
               quoteMutation.isPending ||
               !summary.data ||
               summary.data.totalEth === '0'
@@ -366,7 +414,7 @@ export function PaymentPage() {
           </Button>
           {quote.data && (
             <div className="mt-6 space-y-3 border-t border-border pt-4 text-sm">
-              <p>Cotação: {quote.data.id}</p>
+              <p className="wrap-anywhere">Cotação: {quote.data.id}</p>
               <ul className="space-y-2">
                 {quote.data.items.map((item) => (
                   <li key={item.nftId + item.editionId}>
@@ -385,20 +433,32 @@ export function PaymentPage() {
               </p>
             </div>
           )}
-          {stale && (
+          {priceChanged && (
             <p role="alert" className="mt-4 text-sm text-destructive">
               Carrinho ou preço mudou. Gere uma nova cotação e revise novamente.
             </p>
           )}
+          {walletChanged && (
+            <p role="alert" className="mt-4 text-sm text-destructive">
+              A carteira ou o provedor mudou. Gere uma nova cotação para revisar
+              a compra.
+            </p>
+          )}
           {pendingAttempt && (
-            <Button
-              variant="outline"
-              className="mt-5 w-full"
-              disabled={orderMutation.isPending}
-              onClick={() => orderMutation.mutate(pendingAttempt)}
-            >
-              Retomar tentativa
-            </Button>
+            <div className="mt-5 space-y-3">
+              <p className="text-sm">
+                Há uma tentativa de compra em aberto. Retome a tentativa para
+                consultar o resultado.
+              </p>
+              <Button
+                variant="outline"
+                className="w-full"
+                disabled={orderMutation.isPending}
+                onClick={() => orderMutation.mutate(pendingAttempt)}
+              >
+                Retomar tentativa
+              </Button>
+            </div>
           )}
           {notice && (
             <p role="status" className="mt-4 text-sm">
@@ -407,6 +467,6 @@ export function PaymentPage() {
           )}
         </aside>
       </div>
-    </main>
+    </div>
   )
 }

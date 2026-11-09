@@ -1,6 +1,11 @@
 # KURIO — marketplace de NFTs
 
-Projeto de **João Rossetto** para o [Frontend Challenge da Jungle Gaming](docs/CHALLENGE.md). A interface segue a [cópia do Figma oficial](https://www.figma.com/design/mYZDrnYbgsLFgIw7WhQ7DB/Frontend-Challenge--Copy-?node-id=0-1). O link público será incluído após a publicação.
+Projeto de **João Rossetto** para o [Frontend Challenge da Jungle Gaming](docs/CHALLENGE.md).
+
+- [Demonstração pública](https://kurio-marketplace-joao-rossetto.vercel.app)
+- [Laboratório de integração](https://kurio-marketplace-joao-rossetto.vercel.app/laboratorio)
+- [Cópia do Figma oficial](https://www.figma.com/design/mYZDrnYbgsLFgIw7WhQ7DB/Frontend-Challenge--Copy-?node-id=0-1)
+- [Versão submetida em 09/11/2026](https://github.com/joaorossetto10/kurio-marketplace-joao-rossetto/tree/6945538ea156df9e6c25f0642b65a0a5c8513896)
 
 | Catálogo desktop                                                    | Catálogo mobile                                                   |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -59,7 +64,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-O Playwright inicia seu próprio preview; pare um preview aberto antes de rodar a suíte. Os testes usam Chromium em **390, 768 e 1440 px**. Na última verificação local, **117/117** passaram; typecheck, lint, formatação e build também passaram. Relatórios HTML e traces ficam em `playwright-report/` e `test-results/`, ignorados pelo Git. O workflow em `.github/workflows/ci.yml` executará `npm ci` e essas verificações após o primeiro push; **ainda não há execução de CI no GitHub**.
+O Playwright inicia seu próprio preview na porta 4173. Os testes usam Chromium em **390, 768 e 1440 px**, com regressões específicas a **320 px**. Relatórios HTML e traces ficam em `playwright-report/` e `test-results/`. O [workflow de CI](.github/workflows/ci.yml) executa instalação, checks, build e Playwright.
 
 Para testar uma URL publicada após o deploy, defina `PLAYWRIGHT_TEST_BASE_URL` com a origem HTTPS e execute `npm run test:e2e`. Isso desativa o preview local.
 
@@ -74,13 +79,13 @@ Doze medições locais do build de demonstração, três por rota e perfil, com 
 | Detalhe | Mobile  |          93 |            100 |            96 |  92 |
 | Detalhe | Desktop |         100 |             97 |            96 |  92 |
 
-As quatro medianas locais atingiram as metas oficiais. [Condições, LCP/CLS/TBT e relatórios brutos](docs/evidence/lighthouse/README.md) estão versionados. Para reproduzir, rode `npm run build`, `npm run preview` e os comandos Lighthouse nessa documentação. A auditoria da URL pública continua pendente de publicação.
+As quatro medianas locais atingiram as metas oficiais. [Condições, LCP/CLS/TBT e relatórios brutos](docs/evidence/lighthouse/README.md) estão versionados. Para reproduzir, rode `npm run build`, `npm run preview` e os comandos Lighthouse nessa documentação.
 
 ## Limites conhecidos
 
 - A simulação e o histórico são locais a cada navegador; não há sincronização entre dispositivos.
-- O login e a confirmação em desktop são páginas, enquanto o Figma mostra overlays. O carrinho mobile não reproduz o painel de total fixo, e a lista de carteiras precede o formulário do frame oficial.
+- Login, cadastro e recibo em desktop usam páginas próprias. No carrinho mobile, o resumo acompanha a rolagem. No pagamento, as carteiras cadastradas aparecem antes do formulário.
 - A versão mobile de perfil, carteiras e recibo foi adaptada a partir dos padrões existentes porque não há frames próprios.
-- O build emite um aviso de chunk maior que 500 kB. A comparação visual final e o Lighthouse da URL pública ainda precisam ser concluídos.
+- O build emite um aviso de chunk maior que 500 kB. A tabela Lighthouse acima se refere ao build local da entrega original.
 
 O [enunciado original](docs/CHALLENGE.md) foi preservado integralmente. Os relatórios por etapa estão em `docs/STAGE-1.md` a `docs/STAGE-5.md`.

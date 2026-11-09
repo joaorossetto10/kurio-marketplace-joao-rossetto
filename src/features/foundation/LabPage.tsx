@@ -180,7 +180,7 @@ export function LabPage() {
               )
             }}
           >
-            <div>
+            <div className="min-w-0 max-w-full">
               <Label htmlFor="scenario">Cenário REST</Label>
               <select
                 id="scenario"
@@ -189,7 +189,7 @@ export function LabPage() {
                   new URLSearchParams(window.location.search).get('mock') ??
                   'success'
                 }
-                className="mt-2 block h-11 rounded-md border border-input bg-background px-3 text-sm"
+                className="mt-2 block h-11 w-full rounded-md border border-input bg-background px-3 text-sm"
               >
                 <option value="success">Sucesso</option>
                 <option value="empty">Catálogo vazio</option>
@@ -227,7 +227,7 @@ export function LabPage() {
             <Button
               variant="outline"
               disabled={reset.isPending}
-              className="mt-4"
+              className="mt-4 h-auto whitespace-normal text-left"
               onClick={() => {
                 if (
                   window.confirm(

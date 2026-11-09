@@ -29,11 +29,19 @@ export async function requestValidated<T>(
 ): Promise<T> {
   try {
     const response = await http.request<unknown>(config)
+    if (String(response.headers['content-type']).startsWith('text/html')) {
+      throw new ApiError(
+        'A API da demonstração não respondeu. Recarregue a página para reconectar.',
+        'API_NOT_INTERCEPTED',
+        response.status,
+      )
+    }
     const parsed = schema.safeParse(response.data)
     if (!parsed.success) {
       throw new ApiError(
         'A resposta recebida não tem o formato esperado.',
         'INVALID_RESPONSE',
+        response.status,
       )
     }
     return parsed.data

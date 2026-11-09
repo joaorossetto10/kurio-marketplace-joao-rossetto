@@ -92,7 +92,7 @@ export function ProfilePage() {
             })
           }}
         >
-          <div className="grid min-w-0 gap-x-7 gap-y-5 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-7 gap-y-5 md:grid-cols-2">
             <div>
               <Label htmlFor="profile-name">Nome de exibição</Label>
               <Input
@@ -149,7 +149,7 @@ export function ProfilePage() {
             </div>
             <div>
               <Label htmlFor="profile-avatar">Avatar simulado</Label>
-              <div className="mt-2 flex items-center gap-3">
+              <div className="mt-2 flex flex-wrap items-center gap-3">
                 {avatar ? (
                   <img
                     src={`/assets/${avatar}.png`}
@@ -174,7 +174,7 @@ export function ProfilePage() {
                         : null,
                     )
                   }
-                  className="h-11 min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-sm"
+                  className="h-11 min-w-32 flex-1 rounded-md border border-input bg-background px-3 text-sm"
                 >
                   <option value="">Sem avatar</option>
                   {avatars.map((item) => (
